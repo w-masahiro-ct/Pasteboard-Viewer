@@ -46,12 +46,13 @@ struct MainScreen: View {
 		}
 		.windowTabbingMode(.disallowed)
 		.windowLevel(stayOnTop ? .floating : .normal)
-		#else
-		.task(id: pasteboardObservable.info) {
-			selectedType = nil
-		}
 		#endif
 		.task(id: pasteboardObservable.info) {
+			// Tries to work around an obscure crash.
+			selectedType = nil
+			await Task.yield()
+
+			// We don't want to go straight into the first type on iPhone.
 			guard horizontalSizeClass != .compact else {
 				return
 			}
@@ -204,18 +205,18 @@ private struct SidebarItemView: View {
 			}
 			#endif
 		}
-			.lineLimit(2)
-			.contextMenu {
-				CopyTypeIdentifierButtons(type: type)
-				Divider()
-				if type.xType == .fileURL {
-					#if os(macOS)
-					Button("Show in Finder") {
-						type.string()?.toURL?.showInFinder()
-					}
-					#endif
+		.lineLimit(2)
+		.contextMenu {
+			CopyTypeIdentifierButtons(type: type)
+			Divider()
+			if type.xType == .fileURL {
+				#if os(macOS)
+				Button("Show in Finder") {
+					type.string()?.toURL?.showInFinder()
 				}
+				#endif
 			}
+		}
 	}
 
 	var contents: some View {
