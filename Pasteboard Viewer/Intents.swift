@@ -7,6 +7,8 @@ struct GetPasteboardItemsIntent: AppIntent {
 		"""
 		Returns a list of items from the general pasteboard, where each item includes a list of types and their corresponding data, accessible via the “types” property.
 
+		Note: On iOS, it needs to momentarily open the app to be able to read the pasteboard. Afterwards, it goes back to the Shortcuts app.
+
 		Note: For convenience, binary property lists (.plist) are decoded into XML property lists.
 		""",
 		searchKeywords: [
@@ -16,6 +18,10 @@ struct GetPasteboardItemsIntent: AppIntent {
 		],
 		resultValueName: "Pasteboard Items"
 	)
+
+	#if os(iOS)
+	static let openAppWhenRun = true
+	#endif
 
 	// Note: This would have been better as `[[PasteboardItem_AppEntity]]` but that crashes the Shortcuts app. (macOS 14.3)
 	func perform() async throws -> some IntentResult & ReturnsValue<[PasteboardItem_AppEntity]> {
@@ -43,6 +49,10 @@ struct GetPasteboardItemsIntent: AppIntent {
 			return finalItem
 		}
 
+		#if os(iOS)
+		"shortcuts://".openURL()
+		#endif
+
 		return .result(value: result)
 	}
 }
@@ -50,10 +60,10 @@ struct GetPasteboardItemsIntent: AppIntent {
 struct PasteboardItem_AppEntity: TransientAppEntity {
 	static let typeDisplayRepresentation: TypeDisplayRepresentation = "Pasteboard Item"
 
-	@Property(title: "Index")
+	@Property
 	var index: Int
 
-	@Property(title: "Types")
+	@Property
 	var types: [PasteboardItemType_AppEntity]
 
 	var displayRepresentation: DisplayRepresentation {
@@ -72,10 +82,10 @@ struct PasteboardItem_AppEntity: TransientAppEntity {
 struct PasteboardItemType_AppEntity: TransientAppEntity {
 	static let typeDisplayRepresentation: TypeDisplayRepresentation = "Pasteboard Item Type"
 
-	@Property(title: "Identifier")
+	@Property
 	var identifier: String
 
-	@Property(title: "Data")
+	@Property
 	var data: IntentFile
 
 	var displayRepresentation: DisplayRepresentation {
@@ -96,6 +106,8 @@ struct GetPasteboardContentsAsFilesIntent: AppIntent {
 		"""
 		Returns the contents of the general pasteboard as files.
 
+		Note: On iOS, it needs to momentarily open the app to be able to read the pasteboard. Afterwards, it goes back to the Shortcuts app.
+
 		Note: For convenience, binary property lists (.plist) are decoded to XML property lists.
 		""",
 		searchKeywords: [
@@ -105,6 +117,10 @@ struct GetPasteboardContentsAsFilesIntent: AppIntent {
 		],
 		resultValueName: "Pasteboard Contents"
 	)
+
+	#if os(iOS)
+	static let openAppWhenRun = true
+	#endif
 
 	func perform() async throws -> some IntentResult & ReturnsValue<[IntentFile]> {
 		let result = Pasteboard.general.items.indexed().flatMap { index, item in
@@ -118,6 +134,10 @@ struct GetPasteboardContentsAsFilesIntent: AppIntent {
 				)
 			}
 		}
+
+		#if os(iOS)
+		"shortcuts://".openURL()
+		#endif
 
 		return .result(value: result)
 	}
