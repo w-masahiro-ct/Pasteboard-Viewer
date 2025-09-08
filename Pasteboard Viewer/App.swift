@@ -41,8 +41,7 @@ struct AppMain: App {
 		}
 		.commands {
 			CommandGroup(replacing: .newItem) {
-				// TODO: Do this. I need to get the selected pasteboard.
-//					ClearPasteboardButton()
+				ClearPasteboardButton()
 			}
 			#if os(macOS)
 			CommandGroup(after: .windowSize) {
