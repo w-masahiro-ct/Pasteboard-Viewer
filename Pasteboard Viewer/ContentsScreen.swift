@@ -168,16 +168,9 @@ struct ContentsScreen: View {
 
 	private var formatPicker: some View {
 		#if os(macOS)
-		Picker("View As…", selection: $viewAsText) {
-			Label("View as text", systemImage: "textformat")
-				.tag(true)
-				.help("View as text")
-			Label("View as hex", systemImage: "number")
-				.tag(false)
-				.help("View as hex")
-		}
-		.pickerStyle(.segmented)
-		.labelsHidden()
+		FormatPickerView(selection: $viewAsText)
+			.pickerStyle(.segmented)
+			.labelsHidden()
 		#else
 		EmptyView()
 		#endif

@@ -8,5 +8,5 @@ extension Defaults.Keys {
 
 extension FocusedValues {
 	@Entry
-	var focusedPasteboard: Pasteboard?
+	var selectedPasteboard: Binding<Pasteboard>?
 }

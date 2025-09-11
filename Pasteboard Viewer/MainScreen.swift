@@ -22,7 +22,7 @@ struct MainScreen: View {
 			mainContent
 		}
 		.navigationSplitViewStyle(.balanced)
-		.focusedValue(\.focusedPasteboard, selectedPasteboard)
+		.focusedValue(\.selectedPasteboard, $selectedPasteboard)
 		#if os(macOS)
 		// Prevent sidebar from collapsing.
 		.introspect(.navigationSplitView, on: .macOS(.v15)) { splitview in
@@ -277,19 +277,23 @@ private struct AvoidPasteboardPromptTip: Tip {
 #endif
 
 struct ClearPasteboardButton: View {
-	@FocusedValue(\.focusedPasteboard) private var focusedPasteboard
+	@FocusedBinding(\.selectedPasteboard) private var selectedPasteboard
 
 	// Only needed to get the iOS menu item to update disabled state.
 	@StateObject private var pasteboardObservable = XPasteboard.Observable(.general)
 
 	var body: some View {
-		Button("Clear Pasteboard", systemImage: "xmark.circle", role: .destructive) {
-			let pasteboard = focusedPasteboard ?? .general
+		Button(
+			OS.isMacOS ? "Clear" : "Clear Pasteboard",
+			systemImage: "xmark.circle",
+			role: .destructive
+		) {
+			let pasteboard = selectedPasteboard ?? .general
 			pasteboard.xPasteboard.clear()
 		}
-		.disabled((focusedPasteboard ?? .general).xPasteboard.isEmpty)
+		.disabled((selectedPasteboard ?? .general).xPasteboard.isEmpty)
 		.keyboardShortcut("c", modifiers: [.option, .command])
-		.onChange(of: focusedPasteboard, initial: true) { _, newValue in
+		.onChange(of: selectedPasteboard, initial: true) { _, newValue in
 			if let newValue {
 				pasteboardObservable.pasteboard = newValue.xPasteboard
 			}
