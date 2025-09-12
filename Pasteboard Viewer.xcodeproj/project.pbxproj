@@ -16,6 +16,7 @@
 		E338690024AC782D0074DFF8 /* InternetAccessPolicy.json in Resources */ = {isa = PBXBuildFile; fileRef = E33868FF24AC782D0074DFF8 /* InternetAccessPolicy.json */; };
 		E353C8B4256BE26800D08A09 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353C8B3256BE26800D08A09 /* WelcomeScreen.swift */; };
 		E35B30CD2BE535E3007C4E89 /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; platformFilters = (macos, ); productRef = E35B30CC2BE535E3007C4E89 /* SwiftUIIntrospect-Static */; };
+		E39ABD192E7407240064A372 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = E39ABD182E7407240064A372 /* AppIcon.icon */; };
 		E3A7F1DD23F7DAD400CDF428 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A7F1DC23F7DAD400CDF428 /* App.swift */; };
 		E3A7F1DF23F7DAD400CDF428 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A7F1DE23F7DAD400CDF428 /* MainScreen.swift */; };
 		E3A7F1E123F7DAD700CDF428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A7F1E023F7DAD700CDF428 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		E3214F072C0216AD009B4614 /* Licenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Licenses.txt; sourceTree = "<group>"; };
 		E33868FF24AC782D0074DFF8 /* InternetAccessPolicy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InternetAccessPolicy.json; sourceTree = "<group>"; };
 		E353C8B3256BE26800D08A09 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		E39ABD182E7407240064A372 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		E3A7F1D923F7DAD400CDF428 /* Pasteboard Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pasteboard Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A7F1DC23F7DAD400CDF428 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E3A7F1DE23F7DAD400CDF428 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		E3D883B124C898890001C032 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				E39ABD182E7407240064A372 /* AppIcon.icon */,
 				E3A7F1E823F7DAD700CDF428 /* Info.plist */,
 				E3A7F1E923F7DAD700CDF428 /* Pasteboard_Viewer.entitlements */,
 				E33868FF24AC782D0074DFF8 /* InternetAccessPolicy.json */,
@@ -198,6 +201,7 @@
 				E338690024AC782D0074DFF8 /* InternetAccessPolicy.json in Resources */,
 				E3A7F1E423F7DAD700CDF428 /* Preview Assets.xcassets in Resources */,
 				E3A7F1E123F7DAD700CDF428 /* Assets.xcassets in Resources */,
+				E39ABD192E7407240064A372 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
