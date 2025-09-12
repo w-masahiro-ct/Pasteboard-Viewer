@@ -172,7 +172,7 @@ struct MainScreen: View {
 
 	#if !os(macOS)
 	private var moreButton: some View {
-		Menu("More", systemImage: OS.isMacOrVision ? "ellipsis" : "ellipsis.circle") {
+		Menu("More", systemImage: OS.isMacOrVision || OS.is26OrLater ? "ellipsis" : "ellipsis.circle") {
 			ClearPasteboardButton()
 			Divider()
 			SendFeedbackButton()

@@ -27,8 +27,15 @@ struct ContentsScreen: View {
 		.fillFrame()
 		.navigationTitle(type.decodedDynamicTitleIfAvailable ?? type.title)
 		.toolbar {
-			formatPicker
-			moreButton
+			ToolbarItem {
+				formatPicker
+			}
+			if #available(macOS 26, iOS 26, *) {
+				ToolbarSpacer(.fixed)
+			}
+			ToolbarItem {
+				moreButton
+			}
 		}
 	}
 
@@ -177,7 +184,7 @@ struct ContentsScreen: View {
 	}
 
 	private var moreButton: some View {
-		Menu("More", systemImage: OS.isMacOrVision ? "ellipsis" : "ellipsis.circle") {
+		Menu("More", systemImage: OS.isMacOrVision || OS.is26OrLater ? "ellipsis" : "ellipsis.circle") {
 			Section {
 				if type.xType == .URL {
 					Button("Open in Browser", systemImage: "safari") {

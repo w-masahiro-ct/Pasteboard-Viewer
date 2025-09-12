@@ -1606,6 +1606,14 @@ extension OperatingSystem {
 	static let isVisionOS = current == .visionOS
 	static let isMacOrVision = isMacOS || isVisionOS
 	static let isIOSOrVision = isIOS || isVisionOS
+
+	static let is26OrLater: Bool = {
+		if #available(macOS 26, iOS 26, tvOS 26, watchOS 26, visionOS 26, *) {
+			return true
+		}
+
+		return false
+	}()
 }
 
 typealias OS = OperatingSystem
