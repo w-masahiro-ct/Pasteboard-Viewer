@@ -1,4 +1,6 @@
 <div align="center">
+	<br>
+	<br>
 	<a href="https://sindresorhus.com/pasteboard-viewer">
 		<img src="Stuff/AppIcon-readme.png" width="200" height="200">
 	</a>
@@ -49,12 +51,6 @@ A special version for users that cannot access the App Store. It won't receive a
 ![](Stuff/screenshot2.jpg)
 
 ## FAQ
-
-#### What's with the genie lamp?
-
-It's a reference to the icon of Apple's old NSPasteboard sample app called [Clipboard Viewer](https://developer.apple.com/library/archive/samplecode/ClipboardViewer/Introduction/Intro.html).
-
-<img src="https://user-images.githubusercontent.com/170270/74718709-5a658a80-5265-11ea-8c93-02a12f72f8d1.png" width="64" height="64">
 
 #### Can I contribute localizations?
 
